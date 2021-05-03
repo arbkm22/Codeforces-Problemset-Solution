@@ -35,22 +35,23 @@ int main(void) {
     ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
     string s, ans;   
     cin >> s;
-    if (s.size()==1) {
-        cout << s << endl;
-        return 0;
-    }
-    int f = (s.size()/2)-1;
-    int right = f+1;
-    int left = f-1;
-    ans += s[f];
-    for (int i=0; i<s.size()-1; i++) {
-        if (i%2==0) {
-            ans.push_back(s[right]);
-            right++;
+    int n = s.size();
+    int k, i, j;
+    if (n%2==1)
+        k = n/2;
+    else
+        k = (n/2)-1;
+    ans.push_back(s[k]);
+    i = k+1;
+    j = k-1;
+    while (ans.size()<n) {
+        if (i<n) {
+            ans.push_back(s[i]);
+            i++;
         }
-        else {
-            ans.push_back(s[left]);
-            left--;
+        if (j>=0) {
+            ans.push_back(s[j]);
+            j--;
         }
     }
     cout << ans << endl;
